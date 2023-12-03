@@ -1,0 +1,20 @@
+syntax = "proto3";
+package PROTOCOL;
+
+import "MyEnum.proto";
+
+message Player {
+	uint64 id = 1;
+	uint64 winCount = 2;
+	uint64 loseCount = 3;
+	PlayerStateType playerType = 4;
+}
+message Room {
+	uint64 id = 1;
+	string roomName = 2;
+	uint64 playerCount = 3;
+	repeated Player players = 4;
+}
+message RoomList {
+	repeated Room rooms = 1;
+}

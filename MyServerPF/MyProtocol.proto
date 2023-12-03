@@ -1,0 +1,29 @@
+syntax = "proto3";
+package PROTOCOL;
+
+import "MyEnum.proto";
+import "MyStruct.proto";
+
+message C_LOGIN {
+	string id = 1;
+	uint64 pw = 2;
+}
+
+message S_LOGIN {
+	bool success = 1;
+	uint64 playerId = 2;
+}
+
+message C_ENTER_ROOM {
+	uint64 playerId = 1;
+	uint64 roomId = 2;
+}
+
+message S_ENTER_ROOM {
+	bool success = 1;
+	Room room = 2;
+}
+
+message C_ROOM_LIST {
+	repeated RoomList roomList = 1;
+}
