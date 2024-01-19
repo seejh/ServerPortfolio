@@ -9,7 +9,8 @@
 DB : MySQL<br/>
 
 코드(깃허브)<br/>
-서버 : <br/>
-클라이언트 :<br/> 
+서버 : https://github.com/seejh/ServerPortfolio<br/>
+클라이언트 : https://github.com/seejh/ClientPortfolio<br/> 
 
 영상(유튜브)<br/>
+https://youtu.be/jMlUGg-n32A
