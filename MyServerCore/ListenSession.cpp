@@ -55,12 +55,13 @@ bool ListenSession::Init()
             return false;
     }
 
+    cout << "ListenSession IP:" << ip << "Port:" << port << " Init OK" << endl;
+
     return true;
 }
 
 bool ListenSession::RegisterAccept(AcceptEvent* acceptEvent)
 {
-    cout << "ListenSession::RegisterAccept()" << endl;
     DWORD dwBytes;
 
     // CreateSession
@@ -82,9 +83,7 @@ bool ListenSession::RegisterAccept(AcceptEvent* acceptEvent)
 }
 
 void ListenSession::ProcessAccept(AcceptEvent* acceptEvent)
-{
-    cout << "ListenSession::ProcessAccept()" << endl;
-    
+{   
     // Register session to IOCP & NetService
     shared_ptr<Session> session = acceptEvent->_connectedSession;
     session->_ownerNetService = _ownerNetService;
@@ -92,6 +91,7 @@ void ListenSession::ProcessAccept(AcceptEvent* acceptEvent)
     _ownerNetService->AddSession(session);
 
     // Session Register Recv
+    session->OnConnected();
     session->_isConnected.store(true);
     session->RegisterRecv();
 

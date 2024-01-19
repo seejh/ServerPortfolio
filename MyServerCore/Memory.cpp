@@ -53,7 +53,6 @@ void* Memory::Allocate(int size) {
 	MemoryHeader* header;
 	const int allocSize = size + sizeof(MemoryHeader);
 
-
 	if (allocSize > MAX_ALLOC_SIZE)
 		header = reinterpret_cast<MemoryHeader*>(::_aligned_malloc(allocSize, SLIST_ALIGNMENT));
 	else

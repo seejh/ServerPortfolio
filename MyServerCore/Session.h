@@ -21,12 +21,14 @@ public:
 	// for hooking
 	virtual void OnConnected() {}
 	virtual void OnDisconnected() {}
-	virtual void OnSend(int sendLen) {}
-	virtual void OnRecv(char* buffer, int recvLen) { cout << "OnRecv()" << endl; }
+	virtual void OnSend(int len) {}
+	virtual void OnRecv(char* buffer, int len) { cout << "OnRecv()" << endl; }
 
 	// override
 	virtual HANDLE GetHandle();
 	virtual void Dispatch(IocpEvent* iocpEvent, int len);
+
+	//void ProcessConnect();
 
 	void RegisterRecv();
 	void ProcessRecv(int recvLen);

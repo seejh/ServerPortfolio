@@ -1,4 +1,4 @@
-﻿  ClientPacketHandler.cpp
-  MyServerPF.cpp
-C:\Users\see\source\repos\MyServerPF\MyServerPF\MyServerPF.cpp(7,9): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+﻿  Actor.cpp
+C:\Users\see\source\repos\MyServerPF\MyServerPF\Actor.cpp(192,31): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\see\source\repos\MyServerPF\MyServerPF\Actor.cpp(248,19): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   MyServerPF.vcxproj -> C:\Users\see\source\repos\MyServerPF\x64\Debug\MyServerPF.exe

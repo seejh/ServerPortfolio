@@ -1,31 +1,26 @@
 #pragma once
 
-#include"Session.h"
-
-class Player;
-
-class ClientSession : public Session {
-public:
-    // override
-    virtual void OnConnected() {}
-    virtual void OnDisconnected() {}
-    virtual void OnSend(int sendLen) {}
-    virtual void OnRecv(char* buffer, int recvLen);
+class ClientSession;
+class SessionManager
+{
+	SessionManager() {}
 
 public:
-    shared_ptr<Player> _player;
+	static SessionManager* Instance() {
+		if (!_instance) {
+			_instance = new SessionManager();
+		}
+
+		return _instance;
+	}
+
+	void AddSession(shared_ptr<ClientSession> session);
+	void RemoveSession(shared_ptr<ClientSession> session);
+
+private:
+	static SessionManager* _instance;
+
+	mutex _mutex;
+	set<shared_ptr<ClientSession>> _sessions;
 };
 
-
-/*---------------------------
-    SessionManager
--------------------------*/
-class SessionManager {
-public:
-    void AddSession(shared_ptr<ClientSession> clientSession);
-    void RemoveSession(shared_ptr<ClientSession> clientSession);
-
-public:
-    mutex _mutex;
-    set<shared_ptr<ClientSession>> _clientSessions;
-};

@@ -28,7 +28,7 @@
     <ClInclude Include="pch.h">
       <Filter>ETC</Filter>
     </ClInclude>
-    <ClInclude Include="Global.h">
+    <ClInclude Include="CoreGlobal.h">
       <Filter>ETC</Filter>
     </ClInclude>
     <ClInclude Include="NetUtils.h">
@@ -43,8 +43,15 @@
     <ClInclude Include="CorePch.h">
       <Filter>ETC</Filter>
     </ClInclude>
-    <ClInclude Include="DBConnection.h" />
-    <ClInclude Include="DBConnectionPool.h" />
+    <ClInclude Include="DBBind.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnection.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnectionPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Memory.cpp">
@@ -71,7 +78,7 @@
     <ClCompile Include="SendBuffer.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Global.cpp">
+    <ClCompile Include="CoreGlobal.cpp">
       <Filter>ETC</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -86,8 +93,15 @@
     <ClCompile Include="Allocator.cpp">
       <Filter>Memory</Filter>
     </ClCompile>
-    <ClCompile Include="DBConnection.cpp" />
-    <ClCompile Include="DBConnectionPool.cpp" />
+    <ClCompile Include="DBBind.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnection.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnectionPool.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Network">

@@ -10,19 +10,22 @@ public:
 	NetService(function<shared_ptr<Session>()> sessionFactory);
 	~NetService();
 
+	bool Init();
+
 	shared_ptr<Session> CreateSession();
 	void AddSession(shared_ptr<Session> session);
 	void RemoveSession(shared_ptr<Session> session);
-	bool Init();
+	void Broadcast(shared_ptr<SendBuffer> sendBuffer);
 
 public:
 	shared_ptr<IocpCore> _iocpCore;
 	shared_ptr<ListenSession> _listenSession;
 
-	set<shared_ptr<Session>> _connectedSessions;
+	set<shared_ptr<Session>> _sessions;
 	int _connectedSessionCount = 0;
 
 	function<shared_ptr<Session>()> _sessionFactory;
-	// USE_LOCK;
+	
+	mutex _mutex;
 };
 

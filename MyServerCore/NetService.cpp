@@ -12,26 +12,6 @@ NetService::~NetService()
 {
 }
 
-shared_ptr<Session> NetService::CreateSession()
-{
-	return _sessionFactory();
-}
-
-void NetService::AddSession(shared_ptr<Session> session)
-{
-	// WRITE_LOCK
-	_connectedSessions.insert(session);
-	_connectedSessionCount++;
-}
-
-void NetService::RemoveSession(shared_ptr<Session> session)
-{
-	// WRITE_LOCK
-	
-	ASSERT_CRASH(_connectedSessions.erase(session) != 0);
-	_connectedSessionCount--;
-}
-
 bool NetService::Init()
 {
 	_iocpCore = make_shared<IocpCore>();
@@ -43,3 +23,31 @@ bool NetService::Init()
 
 	return true;
 }
+
+shared_ptr<Session> NetService::CreateSession()
+{
+	return _sessionFactory();
+}
+
+void NetService::AddSession(shared_ptr<Session> session)
+{
+	lock_guard<mutex> _lock(_mutex);
+	_sessions.insert(session);
+	_connectedSessionCount++;
+}
+
+void NetService::RemoveSession(shared_ptr<Session> session)
+{
+	lock_guard<mutex> _lock(_mutex);
+	ASSERT_CRASH(_sessions.erase(session) != 0);
+	_connectedSessionCount--;
+}
+
+void NetService::Broadcast(shared_ptr<SendBuffer> sendBuffer)
+{
+	lock_guard<mutex> _lock(_mutex);
+	for (auto session : _sessions) {
+		session->Send(sendBuffer);
+	}
+}
+

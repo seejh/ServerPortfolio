@@ -13,16 +13,10 @@ bool DBConnection::Connect(SQLHENV henv, const WCHAR* connectionString)
 	WCHAR resultString[MAX_PATH] = { 0 };
 	SQLSMALLINT resultStringLen = 0;
 
-	SQLRETURN ret = ::SQLDriverConnectW(
-		_connection,
-		NULL,
-		reinterpret_cast<SQLWCHAR*>(stringBuffer),
-		_countof(stringBuffer),
-		OUT reinterpret_cast<SQLWCHAR*>(resultString),
-		_countof(resultString),
-		OUT & resultStringLen,
-		SQL_DRIVER_NOPROMPT
-	);
+	SQLRETURN ret = ::SQLDriverConnectW(_connection, NULL,
+		reinterpret_cast<SQLWCHAR*>(stringBuffer), _countof(stringBuffer),
+		OUT reinterpret_cast<SQLWCHAR*>(resultString), _countof(resultString), OUT & resultStringLen,
+		SQL_DRIVER_NOPROMPT);
 
 	if (::SQLAllocHandle(SQL_HANDLE_STMT, _connection, &_statement) != SQL_SUCCESS)
 		return false;
@@ -94,7 +88,7 @@ void DBConnection::Unbind()
 
 bool DBConnection::BindParam(int32 paramIndex, bool* value, SQLLEN* index)
 {
-	return BindParam(paramIndex, SQL_C_TINYINT, SQL_TINYINT, sizeof(bool), value, index);
+	return BindParam(paramIndex, SQL_C_TINYINT, SQL_TINYINT, static_cast<int>(sizeof(bool)), value, index);
 }
 
 bool DBConnection::BindParam(int32 paramIndex, float* value, SQLLEN* index)
@@ -109,27 +103,27 @@ bool DBConnection::BindParam(int32 paramIndex, double* value, SQLLEN* index)
 
 bool DBConnection::BindParam(int32 paramIndex, int8* value, SQLLEN* index)
 {
-	return BindParam(paramIndex, SQL_C_TINYINT, SQL_TINYINT, sizeof(int8), value, index);
+	return BindParam(paramIndex, SQL_C_TINYINT, SQL_TINYINT, static_cast<int>(sizeof(int8)), value, index);
 }
 
 bool DBConnection::BindParam(int32 paramIndex, int16* value, SQLLEN* index)
 {
-	return BindParam(paramIndex, SQL_C_SHORT, SQL_SMALLINT, sizeof(int16), value, index);
+	return BindParam(paramIndex, SQL_C_SHORT, SQL_SMALLINT, static_cast<int>(sizeof(int16)), value, index);
 }
 
 bool DBConnection::BindParam(int32 paramIndex, int32* value, SQLLEN* index)
 {
-	return BindParam(paramIndex, SQL_C_LONG, SQL_INTEGER, sizeof(int32), value, index);
+	return BindParam(paramIndex, SQL_C_LONG, SQL_INTEGER, static_cast<int>(sizeof(int32)), value, index);
 }
 
 bool DBConnection::BindParam(int32 paramIndex, int64* value, SQLLEN* index)
 {
-	return BindParam(paramIndex, SQL_C_SBIGINT, SQL_BIGINT, sizeof(int64), value, index);
+	return BindParam(paramIndex, SQL_C_SBIGINT, SQL_BIGINT, static_cast<int>(sizeof(int64)), value, index);
 }
 
 bool DBConnection::BindParam(int32 paramIndex, TIMESTAMP_STRUCT* value, SQLLEN* index)
 {
-	return BindParam(paramIndex, SQL_C_TYPE_TIMESTAMP, SQL_TYPE_TIMESTAMP, sizeof(TIMESTAMP_STRUCT), value, index);
+	return BindParam(paramIndex, SQL_C_TYPE_TIMESTAMP, SQL_TYPE_TIMESTAMP, static_cast<int>(sizeof(TIMESTAMP_STRUCT)), value, index);
 }
 
 bool DBConnection::BindParam(int32 paramIndex, const WCHAR* str, SQLLEN* index)
@@ -162,42 +156,42 @@ bool DBConnection::BindParam(int32 paramIndex, const BYTE* bin, int32 size, SQLL
 // BindCol
 bool DBConnection::BindCol(int32 columnIndex, bool* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_TINYINT, sizeof(bool), value, index);
+	return BindCol(columnIndex, SQL_C_TINYINT, static_cast<int>(sizeof(bool)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, float* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_FLOAT, sizeof(float), value, index);
+	return BindCol(columnIndex, SQL_C_FLOAT, static_cast<int>(sizeof(float)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, double* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_DOUBLE, sizeof(double), value, index);
+	return BindCol(columnIndex, SQL_C_DOUBLE, static_cast<int>(sizeof(double)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, int8* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_TINYINT, sizeof(int8), value, index);
+	return BindCol(columnIndex, SQL_C_TINYINT, static_cast<int>(sizeof(int8)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, int16* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_SHORT, sizeof(int16), value, index);
+	return BindCol(columnIndex, SQL_C_SHORT, static_cast<int>(sizeof(int16)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, int32* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_LONG, sizeof(int32), value, index);
+	return BindCol(columnIndex, SQL_C_LONG, static_cast<int>(sizeof(int32)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, int64* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_SBIGINT, sizeof(int64), value, index);
+	return BindCol(columnIndex, SQL_C_SBIGINT, static_cast<int>(sizeof(int64)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, TIMESTAMP_STRUCT* value, SQLLEN* index)
 {
-	return BindCol(columnIndex, SQL_C_TYPE_TIMESTAMP, sizeof(TIMESTAMP_STRUCT), value, index);
+	return BindCol(columnIndex, SQL_C_TYPE_TIMESTAMP, static_cast<int>(sizeof(TIMESTAMP_STRUCT)), value, index);
 }
 
 bool DBConnection::BindCol(int32 columnIndex, WCHAR* str, int32 size, SQLLEN* index)

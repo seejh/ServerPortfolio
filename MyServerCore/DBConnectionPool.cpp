@@ -18,6 +18,7 @@ bool DBConnectionPool::Connect(int32 connectionCount, const WCHAR* connectionStr
 	// sql odbc3버전
 	if (::SQLSetEnvAttr(_environment, SQL_ATTR_ODBC_VERSION, reinterpret_cast<SQLPOINTER>(SQL_OV_ODBC3), 0) != SQL_SUCCESS)
 		return false;
+
 	// 커넥션 카운트를 스레드 개수 만큼
 	for (int32 i = 0; i < connectionCount; i++) {
 		DBConnection* connection = xnew<DBConnection>();

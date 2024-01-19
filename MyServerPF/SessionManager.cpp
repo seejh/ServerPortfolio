@@ -1,21 +1,17 @@
 #include "pch.h"
 #include "SessionManager.h"
 
-#include"ClientPacketHandler.h"
+SessionManager* SessionManager::_instance = nullptr;
 
-void SessionManager::AddSession(shared_ptr<ClientSession> clientSession)
+
+void SessionManager::AddSession(shared_ptr<ClientSession> session)
 {
-	lock_guard<mutex> _lock(_mutex);
-	_clientSessions.insert(clientSession);
+	lock_guard<mutex> lock(_mutex);
+	_sessions.insert(session);
 }
 
-void SessionManager::RemoveSession(shared_ptr<ClientSession> clientSession)
+void SessionManager::RemoveSession(shared_ptr<ClientSession> session)
 {
-	lock_guard<mutex> _lock(_mutex);
-	_clientSessions.erase(clientSession);
-}
-
-void ClientSession::OnRecv(char* buffer, int recvLen)
-{
-	ClientPacketHandler::HandlePacket(static_pointer_cast<ClientSession>(shared_from_this()), buffer, recvLen);
+	lock_guard<mutex> lock(_mutex);
+	_sessions.erase(session);
 }

@@ -37,7 +37,6 @@ void Session::Dispatch(IocpEvent* iocpEvent, int len)
 
 void Session::RegisterRecv()
 {
-	cout << "Session::RegisterRecv()" << endl;
 	if (!_isConnected.load()) {
 		return;
 	}
@@ -60,7 +59,6 @@ void Session::RegisterRecv()
 
 void Session::ProcessRecv(int recvLen)
 {
-	cout << "Sesson::ProcessRecv()" << endl;
 	// Reset RecvEvent
 	_recvEvent.Reset();
 	_recvEvent._ownerIocpObject.reset();
@@ -92,7 +90,6 @@ void Session::ProcessRecv(int recvLen)
 
 void Session::Send(shared_ptr<SendBuffer> sendBuffer)
 {
-	cout << "Send()" << endl;
 	if (!_isConnected.load()) {
 		return;
 	}
@@ -113,7 +110,6 @@ void Session::Send(shared_ptr<SendBuffer> sendBuffer)
 
 void Session::RegisterSend()
 {
-	cout << "RegisterSend()" << endl;
 	if (!_isConnected.load())
 		return;
 
@@ -135,7 +131,6 @@ void Session::RegisterSend()
 
 void Session::ProcessSend(int sendLen)
 {
-	cout << "ProcessSend()" << endl;
 	_sendEvent.Reset();
 	_sendEvent._ownerIocpObject.reset();
 
@@ -155,7 +150,7 @@ void Session::ProcessSend(int sendLen)
 
 void Session::Disconnect()
 {
-	cout << "Disconnect()" << endl;
+	//cout << "Disconnect()" << endl;
 	// load로 처리하려고 했으나 그 잠시 사이에 다른 진입이 있을 수 있기에 한 방에 가야댐
 	if (_isConnected.exchange(false) == false)
 		return;
@@ -165,7 +160,6 @@ void Session::Disconnect()
 
 bool Session::RegisterDisconnect()
 {
-	cout << "RegisterDisconnect()" << endl;
 	_disconnectEvent._ownerIocpObject = shared_from_this();
 
 	if (NetUtils::_disconnectEx(_socket, &_disconnectEvent, TF_REUSE_SOCKET, 0)) {
@@ -181,8 +175,9 @@ bool Session::RegisterDisconnect()
 
 void Session::ProcessDisconnect()
 {
-	cout << "ProcessDisconnect()" << endl;
 	_ownerNetService->RemoveSession(static_pointer_cast<Session>(shared_from_this()));
 	_disconnectEvent.Reset();
 	_disconnectEvent._ownerIocpObject.reset();
+
+	OnDisconnected();
 }
