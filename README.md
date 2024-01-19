@@ -9,8 +9,8 @@ IOCP로 동작하며 네트워크 패킷을 받은 스레드가 해당 패킷의
 코드는 네트워크 라이브러리(MyServerCore)와 컨텐츠 코드(MyServerPF)로 분리되어 있습니다.
 
 ## 개발 환경
-** 서버 : Windows, C++, IOCP<br/>
-** 클라이언트 : Windows, Unreal4 <br/>
+** 서버 ** : Windows, C++, IOCP<br/>
+** 클라이언트 ** : Windows, Unreal4 <br/>
 ** DB : MySQL<br/>
 
 ## 코드(깃허브)<br/>
