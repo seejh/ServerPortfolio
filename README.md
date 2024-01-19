@@ -14,8 +14,8 @@ IOCP로 동작하며 네트워크 패킷을 받은 스레드가 해당 패킷의
 **DB** : MySQL<br/>
 
 ## 코드(깃허브)<br/>
-### 서버 : https://github.com/seejh/ServerPortfolio<br/>
-### 클라이언트 : https://github.com/seejh/ClientPortfolio<br/> 
+**서버** : https://github.com/seejh/ServerPortfolio<br/>
+**클라이언트** : https://github.com/seejh/ClientPortfolio<br/> 
 
 ## 영상(유튜브)<br/>
 https://youtu.be/jMlUGg-n32A
