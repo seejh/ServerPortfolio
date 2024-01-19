@@ -4,12 +4,12 @@
 동작
 
 
-서버 : Windows, C++, IOCP
-클라 : Windows, Unreal4 
-DB : MySQL
+서버 : Windows, C++, IOCP<br/>
+클라 : Windows, Unreal4 <br/>
+DB : MySQL<br/>
 
-코드(깃허브)
-서버 : 
-클라이언트 : 
+코드(깃허브)<br/>
+서버 : <br/>
+클라이언트 :<br/> 
 
-영상(유튜브)
+영상(유튜브)<br/>
