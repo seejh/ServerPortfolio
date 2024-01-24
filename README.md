@@ -18,4 +18,4 @@ IOCP로 동작하며 네트워크 패킷을 받은 스레드가 해당 패킷의
 **클라이언트** : https://github.com/seejh/ClientPortfolio<br/> 
 
 ## 영상(유튜브)<br/>
-https://youtu.be/jMlUGg-n32A
+https://www.youtube.com/watch?v=A-Fom8oiGkY
