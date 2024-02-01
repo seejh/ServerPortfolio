@@ -8,6 +8,8 @@ IOCP로 동작하며 네트워크 패킷을 받은 스레드가 해당 패킷의
 네트워크 패킷 직렬화는 구글 프로토버프로 했고 락은 std::mutex를 사용했습니다.
 코드는 네트워크 라이브러리(MyServerCore)와 컨텐츠 코드(MyServerPF)로 분리되어 있습니다.
 
+![Server1](https://github.com/seejh/ServerPortfolio/assets/152791315/4bde2fb8-6eac-4b08-b257-fd72a6bd58d1)
+
 ## 개발 환경
 **서버** : Windows, C++, IOCP<br/>
 **클라이언트** : Windows, Unreal4 <br/>
