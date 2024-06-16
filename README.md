@@ -34,11 +34,8 @@ https://www.youtube.com/watch?v=A-Fom8oiGkY
 프로그램 동작 설명 : 
 크게 IOCP, 잡큐, Send 스레드로 나누어지고 기본적인 동작은 아래와 같습니다.
 ![image](https://github.com/seejh/ServerPortfolio/assets/152791315/fb1d0163-3a41-4ad5-a077-5162a11ef021)
-IOCP에서 클라로부터 패킷을 받고 
-
-
-
-잡큐는 게임월드(룸)와 DB 연산
+IOCP에서 클라로부터 패킷을 받고 여기서 처리하거나, 잡큐로 넘겨서 처리하고 Send 스레드에서 처리된 내용들을 클라이언트에게 보내줍니다.
+잡큐는 게임월드(룸)와 DB에 대한 연산을 처리합니다.
 
 
 
